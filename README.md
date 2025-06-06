@@ -1,6 +1,6 @@
 # Personal Finance Manager 💸
 
-A Laravel-based web application designed for tracking and managing personal finances, developed as part of a university practice project between **20/05/2025 - 30/05/2025**.
+A Laravel-based web application designed for tracking and managing personal finances, developed as part of a university practice project..
 
 ## 🎯 Objective
 
@@ -24,7 +24,7 @@ The aim of this project is to help users manage their **personal income and expe
 - **PHP 8.x**
 - **Laravel 11**
 - **Laravel Breeze** (Blade + Alpine stack)
-- **MySQL** (MariaDB)
+- **MySQL** 
 - **Tailwind CSS** (with Blade templates)
 - **Git** + **GitHub** for version control
 
@@ -42,11 +42,12 @@ The aim of this project is to help users manage their **personal income and expe
 
 ## 📸 Screenshots
 
+**Will be added when the project is completed**
+
 - Login/Register Page  
 - Dashboard with charts and summary  
 - Transaction management page  
 - Category management  
-*(See report PDF for Print Screens)*
 
 ## 🗃️ Installation
 
