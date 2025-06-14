@@ -10,15 +10,19 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->decimal('amount', 15, 2);
-            $table->enum('type', ['income', 'expense']);
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->string('type'); // income or expense
+            $table->decimal('amount', 10, 2);
+            $table->text('description')->nullable();
             $table->date('transaction_date');
             $table->timestamps();
+
+            // Foreign keys
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
-
 
     public function down()
     {

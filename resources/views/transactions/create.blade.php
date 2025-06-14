@@ -1,62 +1,59 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 max-w-md">
-    <h1 class="text-2xl font-bold mb-6">Add New Transaction</h1>
+<div class="min-h-screen bg-gray-100 mx-auto mt-10 p-6 rounded-xl shadow-sm flex flex-col items-center">
+    <h2 class="text-xl font-bold mb-4">Add Transaction</h2>
 
-    @if ($errors->any())
-        <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
-            <ul class="list-disc pl-5">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('transactions.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('transactions.store') }}" method="POST" class="w-full bg-white p-6 rounded-lg">
         @csrf
 
-        <div>
-            <label for="title" class="block font-semibold mb-1">Title</label>
-            <input type="text" name="title" id="title" value="{{ old('title') }}" required
-                class="w-full border border-gray-300 rounded px-3 py-2">
+        <div class="mb-4">
+            <label for="title" class="block font-medium mb-1">Title</label>
+            <input type="text" name="title" id="title" class="w-full border border-gray-300 rounded-lg p-2" required>           
         </div>
 
-        <div>
-            <label for="amount" class="block font-semibold mb-1">Amount</label>
-            <input type="number" name="amount" id="amount" value="{{ old('amount') }}" step="0.01" min="0" required
-                class="w-full border border-gray-300 rounded px-3 py-2">
-        </div>
-
-        <div>
-            <label for="type" class="block font-semibold mb-1">Type</label>
-            <select name="type" id="type" required class="w-full border border-gray-300 rounded px-3 py-2">
-                <option value="">Select type</option>
-                <option value="income" {{ old('type') == 'income' ? 'selected' : '' }}>Income</option>
-                <option value="expense" {{ old('type') == 'expense' ? 'selected' : '' }}>Expense</option>
+        {{-- Type --}}
+        <div class="mb-4">
+            <label for="type" class="block font-medium mb-1">Type</label>
+            <select name="type" id="type" class="w-full border border-gray-300 rounded-lg p-2" required>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
             </select>
         </div>
 
-        <div>
-            <label for="category_id" class="block font-semibold mb-1">Category</label>
-            <select name="category_id" id="category_id" required class="w-full border border-gray-300 rounded px-3 py-2">
-                <option value="">Select category</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
+        {{-- Category --}}
+        <div class="mb-4">
+            <label for="category_id" class="block font-medium mb-1">Category</label>
+            <select name="category_id" id="category_id" class="w-full border border-gray-300 rounded-lg p-2" required>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
 
-        <div>
-            <label for="transaction_date" class="block font-semibold mb-1">Date</label>
-            <input type="date" name="transaction_date" id="transaction_date" value="{{ old('transaction_date') ?? date('Y-m-d') }}" required
-                class="w-full border border-gray-300 rounded px-3 py-2">
+        {{-- Amount --}}
+        <div class="mb-4">
+            <label for="amount" class="block font-medium mb-1">Amount</label>
+            <input type="number" name="amount" id="amount" step="0.01" class="w-full border border-gray-300 rounded-lg p-2" required>
         </div>
 
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+        {{-- Description --}}
+        <div class="mb-4">
+            <label for="description" class="block font-medium mb-1">Description (optional)</label>
+            <textarea name="description" id="description" rows="3" class="w-full border border-gray-300 rounded-lg p-2"></textarea>
+        </div>
+
+        {{-- Date --}}
+        <div class="mb-4">
+            <label for="date" class="block font-medium mb-1">Date</label>
+            <input type="date" name="transaction_date" id="date" class="w-full border border-gray-300 rounded-lg p-2" required>
+        </div>
+
+        <div class="flex justify-end">
+            <button type="submit" class="bg-blue text-gray px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                Save
+            </button>
+        </div>
     </form>
 </div>
 @endsection
