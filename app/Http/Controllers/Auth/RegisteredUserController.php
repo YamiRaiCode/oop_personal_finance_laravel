@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\TestEmail;
+use App\Mail\WelcomeMail;
 
 class RegisteredUserController extends Controller
 {
@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
         ]);
 
         // Send welcome email
-        Mail::to($user->email)->send(new TestEmail());
+        Mail::to($user->email)->send(new WelcomeMail());
 
         event(new Registered($user));
 
