@@ -29,4 +29,7 @@ Route::get('/profile/edit', function () {
     return "Profile edit page - not implemented yet.";
 })->name('profile.edit');
 
+// Route to send a test email
+Route::get('/send-test-email', [DashboardController::class, 'sendTestEmail']);
+
 require __DIR__.'/auth.php';

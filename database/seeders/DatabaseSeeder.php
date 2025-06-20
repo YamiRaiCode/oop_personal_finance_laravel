@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Test User',
                 'email_verified_at' => now(),
-                'password' => bcrypt('password'), // veya Hash::make()
+                'password' => bcrypt('password'), // or Hash::make()
                 'remember_token' => Str::random(10),
             ]
         );

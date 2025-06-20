@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestEmail;
 
 class DashboardController extends Controller
 {
@@ -60,6 +62,9 @@ class DashboardController extends Controller
 
     }
 
-
-    
+    public function sendTestEmail()
+    {
+        Mail::to('kesra395@gmail.com')->send(new TestEmail());
+        return 'Test email sent!';
+    }
 }
