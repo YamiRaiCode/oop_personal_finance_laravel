@@ -16,6 +16,7 @@ class CreateTransactionsTable extends Migration
             $table->decimal('amount', 10, 2);
             $table->text('description')->nullable();
             $table->date('transaction_date');
+            $table->softDeletes();
             $table->timestamps();
 
             // Foreign keys

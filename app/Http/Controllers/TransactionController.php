@@ -51,7 +51,7 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        
+        // Validate form inputs
         $request->validate([
             'title' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0.01',
@@ -60,7 +60,7 @@ class TransactionController extends Controller
             'transaction_date' => 'required|date',
         ]);
 
-
+        // Create a new transaction
         Transaction::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
